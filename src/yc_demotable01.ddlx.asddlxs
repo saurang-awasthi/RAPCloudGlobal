@@ -1,0 +1,45 @@
+@Metadata.layer: #CUSTOMER
+@UI: {
+  headerInfo: {
+    typeName: 'DemoTable01', 
+    typeNamePlural: 'DemoTable01s', 
+    title: {
+      type: #STANDARD, 
+      label: 'Demo Table 01', 
+      value: 'Dtcode'
+    }
+  }
+}
+annotate view YC_DemoTable01 with
+{
+  @UI.identification: [ {
+    position: 1 
+  } ]
+  @UI.lineItem: [ {
+    position: 1 
+  } ]
+  @UI.facet: [ {
+    id: 'YI_DemoTable01', 
+    purpose: #STANDARD, 
+    type: #IDENTIFICATION_REFERENCE, 
+    label: 'Demo Table 01', 
+    position: 1 
+  }, 
+  {
+    id: 'YI_DemoTable01Text', 
+    type: #LINEITEM_REFERENCE, 
+    label: 'Demo Table 01 Text', 
+    position: 2 , 
+    targetElement: '_DemoTable01Text'
+  } ]
+  Dtcode;
+  
+  @UI.identification: [ {
+    hidden: true, 
+    position: 2 
+  } ]
+  @UI.lineItem: [ {
+    position: 2 
+  } ]
+  Dtdesc;
+}

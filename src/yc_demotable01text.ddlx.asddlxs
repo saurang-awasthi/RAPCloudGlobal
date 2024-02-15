@@ -1,0 +1,39 @@
+@Metadata.layer: #CUSTOMER
+@UI: {
+  headerInfo: {
+    typeName: 'DemoTable01Text', 
+    typeNamePlural: 'DemoTable01Texts', 
+    title: {
+      type: #STANDARD, 
+      label: 'Demo Table 01 Text', 
+      value: 'Langu'
+    }
+  }
+}
+annotate view YC_DemoTable01Text with
+{
+  @UI.facet: [ {
+    id: 'YI_DemoTable01Text', 
+    purpose: #STANDARD, 
+    type: #IDENTIFICATION_REFERENCE, 
+    label: 'Demo Table 01 Text', 
+    position: 1 
+  } ]
+  @UI.identification: [ {
+    position: 1 , 
+    label: 'Langu'
+  } ]
+  @UI.lineItem: [ {
+    position: 1 , 
+    label: 'Langu'
+  } ]
+  Langu;
+  
+  @UI.identification: [ {
+    position: 2 
+  } ]
+  @UI.lineItem: [ {
+    position: 2 
+  } ]
+  Dtdesc;
+}

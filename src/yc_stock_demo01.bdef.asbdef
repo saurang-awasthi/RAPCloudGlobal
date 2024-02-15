@@ -1,0 +1,28 @@
+unmanaged implementation in class zbp_c_stock_demo01 unique;
+strict ( 2 ); //Uncomment this line in order to enable strict mode 2. The strict mode has two variants (strict(1), strict(2)) and is prerequisite to be future proof regarding syntax and to be able to release your BO.
+
+define behavior for YC_STOCK_DEMO01 alias StockList
+late numbering
+lock master
+authorization master ( instance )
+//etag master <field_name>
+{
+  field ( readonly ) Stock_id;
+//  create;
+//  update;
+//  delete;
+  association _fundItems {  }   // create;
+}
+
+define behavior for YC_FUND_DEMO01 alias FundList
+late numbering
+lock dependent by _StockDT
+authorization dependent by _StockDT
+//etag master <field_name>
+{
+  field ( readonly ) Stock_id, Fund_id;
+//  update;
+//  delete;
+
+  association _StockDT;
+}

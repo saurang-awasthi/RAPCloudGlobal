@@ -1,0 +1,4 @@
+@EndUserText.label: 'Service definition for ZC_YTRAVEL01'
+define service ZUI_YTRAVEL01_O4 {
+  expose ZC_YTRAVEL01 as Travel;
+}

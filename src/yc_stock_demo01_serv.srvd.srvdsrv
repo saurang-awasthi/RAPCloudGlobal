@@ -1,0 +1,5 @@
+@EndUserText.label: 'Service - Query Stock Demo'
+define service YC_STOCK_DEMO01_SERV {
+  expose YC_STOCK_DEMO01 as StockList;
+  expose YC_FUND_DEMO01  as FundList;
+}

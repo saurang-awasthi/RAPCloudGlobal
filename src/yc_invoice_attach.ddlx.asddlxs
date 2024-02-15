@@ -1,0 +1,29 @@
+@Metadata.layer: #CORE
+@UI:{
+    headerInfo:{ typeName: 'Invoice', typeNamePlural: 'Invoices', typeImageUrl: 'sap-icon://flight',
+                 title:{ type:#STANDARD, value: 'Invoice' },
+                 description:{ type:#STANDARD, value: 'Remark' } },
+    presentationVariant: [{ sortOrder: [{ by: 'Invoice', direction: #ASC }],
+                            visualizations: [{ type: #AS_LINEITEM }] }]
+}
+annotate entity YC_INVOICE_ATTACH with
+{
+  @UI.facet: [{ label: 'General Information', id: 'GeneralInfo', type: #COLLECTION, position: 10 },
+              { id: 'Invoicedet', purpose: #STANDARD, type: #IDENTIFICATION_REFERENCE, parentId: 'GeneralInfo',
+                label: 'Invoice Details', position: 10 },
+              { id: 'Upload', purpose: #STANDARD, type: #FIELDGROUP_REFERENCE, parentId: 'GeneralInfo',
+                label: 'Upload Invoice', position: 20, targetQualifier: 'Upload' }]
+  @UI:{ lineItem: [{ position: 10, importance: #HIGH, label: 'Invoice Number' }],
+        identification: [{ position: 10, label: 'Invoice Number' }] }
+  Invoice;
+  @UI:{ lineItem: [{ position: 20, importance: #HIGH, label: 'Remarks' }],
+        identification: [{ position: 20, label: 'Remarks' }] }
+  Remark;
+  @UI:{ lineItem: [{ position: 30, importance: #MEDIUM, label: 'Attachment' }],
+        fieldGroup: [{ position: 50, qualifier: 'Upload', label: 'Attachment' }] }
+  Attachment;
+  @UI.hidden: true
+  Mimetype;
+  @UI.hidden: true
+  Filename;
+}

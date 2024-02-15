@@ -1,0 +1,45 @@
+<?sap.transform simple?>
+<tt:transform xmlns:tt="http://www.sap.com/transformation-templates">
+
+  <tt:root name="stock_data"/>
+
+  <tt:template>
+    <stocks>
+      <tt:loop name="stockdt" ref="stock_data">
+        <stock>
+          <stock_id>
+            <tt:value ref="$stockdt.stock_id"/>
+          </stock_id>
+          <stock_nm>
+            <tt:value ref="$stockdt.stock_nm"/>
+          </stock_nm>
+          <stock_dt>
+            <tt:value ref="$stockdt.stock_dt"/>
+          </stock_dt>
+          <stock_funds>
+            <tt:loop name="stockfd" ref="$stockdt.fund_itm">
+              <stock_fund>
+                <fund_id>
+                  <tt:value ref="$stockfd.fund_id"/>
+                </fund_id>
+                <fund_nm>
+                  <tt:value ref="$stockfd.fund_nm"/>
+                </fund_nm>
+                <propval>
+                  <tt:value ref="$stockfd.propval"/>
+                </propval>
+                <holdcnt>
+                  <tt:value ref="$stockfd.holdcnt"/>
+                </holdcnt>
+                <holdamt>
+                  <tt:value ref="$stockfd.holdamt"/>
+                </holdamt>
+              </stock_fund>
+            </tt:loop>
+          </stock_funds>
+        </stock>
+      </tt:loop>
+    </stocks>
+  </tt:template>
+
+</tt:transform>

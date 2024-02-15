@@ -1,0 +1,6 @@
+@ObjectModel.leadingEntity.name: 'YC_DemoTable01_S'
+define service YUI_DEMOTABLE01 {
+  expose YC_DEMOTABLE01_S as DemoTable01All;
+  expose YC_DEMOTABLE01 as DemoTable01;
+  expose YC_DEMOTABLE01TEXT as DemoTable01Text;
+}

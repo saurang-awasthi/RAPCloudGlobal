@@ -1,0 +1,39 @@
+{
+  "formatVersion": "1",
+  "header": {
+    "description": "Maintain Demo Table 01",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "serviceConfiguration": {
+    "serviceBinding": "YUI_DEMOTABLE01_O4",
+    "serviceName": "YUI_DEMOTABLE01_O4",
+    "serviceVersion": "0001",
+    "rootEntitySet": "DemoTable01All",
+    "name": "Demo Table 01",
+    "configurationGroup": "",
+    "skipRootEntity": true
+  },
+  "appConfiguration": {
+    "listReport": {},
+    "objectPages": [
+      {
+        "entitySet": "DemoTable01All",
+        "variantManagement": "control"
+      }
+    ],
+    "tableSettings": [
+      {
+        "entitySet": "DemoTable01",
+        "tableType": "gridTable",
+        "creationModeName": "creationRow",
+        "rowCountMode": "auto"
+      },
+      {
+        "entitySet": "DemoTable01Text",
+        "tableType": "gridTable",
+        "creationModeName": "creationRow"
+      }
+    ]
+  }
+}

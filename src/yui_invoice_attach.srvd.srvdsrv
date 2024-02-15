@@ -1,0 +1,4 @@
+@EndUserText.label: 'Invoice Attachment'
+define service YUI_INVOICE_ATTACH {
+  expose YC_INVOICE_ATTACH as InvoiceAttach;
+}

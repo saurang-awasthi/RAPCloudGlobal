@@ -1,0 +1,115 @@
+managed with additional save implementation in class YBP_I_DEMOTABLE01_S unique;
+strict;
+with draft;
+
+define behavior for YI_DemoTable01_S alias DemoTable01All
+draft table YTDEMO01_D_S
+with unmanaged save
+lock master total etag LastChangedAtMax
+authorization master( global )
+
+{
+  field ( readonly )
+   SingletonID;
+
+  field ( notrigger )
+   SingletonID,
+   HideTransport,
+   LastChangedAtMax;
+
+
+  update;
+  internal create;
+  internal delete;
+
+  draft action ( features : instance ) Edit;
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare;
+  action ( features : instance ) SelectCustomizingTransptReq parameter D_SelectCustomizingTransptReqP result [1] $self;
+
+  association _DemoTable01 { create ( features : instance ); with draft; }
+}
+
+define behavior for YI_DemoTable01 alias DemoTable01
+persistent table YTDEMO01
+draft table YTDEMO01_D
+etag master LocalLastChangedAt
+lock dependent by _DemoTable01All
+authorization dependent by _DemoTable01All
+
+{
+  field ( mandatory : create )
+   Dtcode;
+
+  field ( readonly )
+   SingletonID,
+   LastChangedAt,
+   LocalLastChangedAt;
+
+  field ( readonly : update )
+   Dtcode;
+
+  field ( notrigger )
+   SingletonID,
+   LastChangedAt,
+   LocalLastChangedAt;
+
+
+  update( features : global );
+  delete( features : global );
+
+  mapping for YTDEMO01
+  {
+    Dtcode = DTCODE;
+    LastChangedAt = LAST_CHANGED_AT;
+    LocalLastChangedAt = LOCAL_LAST_CHANGED_AT;
+  }
+
+  association _DemoTable01All { with draft; }
+  association _DemoTable01Text { create ( features : global ); with draft; }
+
+  validation ValidateTransportRequest on save ##NOT_ASSIGNED_TO_DETACT { create; update; delete; }
+}
+
+define behavior for YI_DemoTable01Text alias DemoTable01Text
+persistent table YTDEMO01T
+draft table YTDEMO01T_D
+etag master LocalLastChangedAt
+lock dependent by _DemoTable01All
+authorization dependent by _DemoTable01All
+
+{
+  field ( mandatory : create )
+   Langu;
+
+  field ( readonly )
+   SingletonID,
+   Dtcode,
+   LocalLastChangedAt;
+
+  field ( readonly : update )
+   Langu;
+
+  field ( notrigger )
+   SingletonID,
+   LocalLastChangedAt;
+
+
+  update( features : global );
+  delete( features : global );
+
+  mapping for YTDEMO01T
+  {
+    Langu = LANGU;
+    Dtcode = DTCODE;
+    Dtdesc = DTDESC;
+    LocalLastChangedAt = LOCAL_LAST_CHANGED_AT;
+  }
+
+  association _DemoTable01All { with draft; }
+  association _DemoTable01 { with draft; }
+
+  validation ValidateTransportRequest on save ##NOT_ASSIGNED_TO_DETACT { create; update; delete; }
+}

@@ -1,0 +1,4 @@
+@EndUserText.label: 'Hierarchy : Employee Service'
+define service YUI_EMPLOYEE {
+  expose YC_EMPLOYEE as Employee;
+}
